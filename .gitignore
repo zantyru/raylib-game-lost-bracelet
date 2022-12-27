@@ -84,3 +84,6 @@ dkms.conf
 *.mod
 *.smod
 
+
+#--- Project related ignores ---------------------------
+
