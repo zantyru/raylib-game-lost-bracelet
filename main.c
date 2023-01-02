@@ -1,6 +1,6 @@
 #include "raylib.h"
 #include "constants.h"
-#include "texturum.h"
+#include "data_textures.h"
 #include "area.h"
 #include "graphics.h"
 
@@ -63,6 +63,6 @@ int main()
 
 
 // Трюк для компиляции всех cpp-файлов пока нет скрипта для общей сборки
-#include "texturum.c"
+#include "data_textures.c"
 #include "area.c"
 #include "graphics.c"

@@ -27,7 +27,8 @@
 			"stdexcept": "c",
 			"tuple": "c",
 			"type_traits": "c",
-			"utility": "c"
+			"utility": "c",
+			"tool_storage.h": "c"
 		}
 	}
 }

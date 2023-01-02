@@ -28,8 +28,12 @@ void Chunk_Free(storage_chunk_t *chunk);
 
 typedef struct Storage
 {
-
+    unsigned int _items_count;
+    storage_chunk_t* _root;
+    storage_chunk_t* _last;
 } Storage;
+
+void* Storage_GetItemPointer(int index);
 
 
 #endif // TOOL_STORAGE_H
