@@ -2,27 +2,30 @@
 #include "tool_storage.h"
 
 
-storage_chunk_t* Chunk_Allocate(size_t size, int count)
+storage_chunk_t* Chunk_Allocate(size_t item_size)
 {
-    storage_chunk_t* p = MemAlloc(offsetof(storage_chunk_t, buffer) + count * size);
-    if (p)
+    storage_chunk_t* chunk = MemAlloc(offsetof(storage_chunk_t, buffer) + STORAGE_CHUNK_CAPACITY * item_size);
+    if (chunk != NULL)
     {
-        p->size = size;
-        p->count = count;
-        p->_next = NULL;
+        chunk->item_size = item_size;
+        chunk->_next = NULL;
     }
 
-    return p;
+    return chunk;
 }
 
 
-void* Chunk_GetElement(storage_chunk_t *data, int index)
+void* Chunk_GetItemPointer(storage_chunk_t *chunk, int index)
 {
-    return &data->buffer + index * data->size;
+    return
+        (index >= 0 && index < STORAGE_CHUNK_CAPACITY)
+        ? &chunk->buffer + index * chunk->item_size
+        : NULL
+    ;
 }
 
 
-void Chunk_Free(storage_chunk_t *data)
+void Chunk_Free(storage_chunk_t *chunk)
 {
-    MemFree(data);
+    MemFree(chunk);
 }
