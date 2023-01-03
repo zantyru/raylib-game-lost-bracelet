@@ -8,15 +8,7 @@
 #define AREA_H
 
 
-typedef enum AreaCellType
-{
-    AREA_CELL_TYPE_NONE,
-    AREA_CELL_TYPE_EMPTY,
-    AREA_CELL_TYPE_BLOCK,
-    AREA_CELL_TYPE_FLOOR,
-    AREA_CELL_TYPE_PLAYER,
-    _COUNT_AREA_CELL_TYPE
-} AreaCellType;
+#include "constants.h"
 
 
 typedef struct AreaCell
@@ -29,9 +21,9 @@ typedef struct AreaCell
 typedef struct Area
 {
     //  width
-    // -------+
-    //        |  length
-    //        |
+    //    ___--+
+    // ```      \  length
+    //           \ 
     
     int _width;
     int _length;

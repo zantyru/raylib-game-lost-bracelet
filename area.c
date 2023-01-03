@@ -2,7 +2,7 @@
 ** Код написан на Си с соблюдением стиля, принятого в raylib.
 */
 
-#include <stddef.h>  // Нужен для NULL
+#include <stddef.h>  // Required for: NULL
 #include "raylib.h"
 #include "area.h"
 

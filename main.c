@@ -1,21 +1,19 @@
 #include "raylib.h"
 #include "constants.h"
-#include "data_textures.h"
+#include "data_sprites.h"
 #include "area.h"
 #include "graphics.h"
 
 
 int main()
 {
-    TexturumManager texturum_manager;
-    RenderQueue render_queue;
     Vector2 v = { 0 };
     
     InitWindow(
         SCREEN_WIDTH, SCREEN_HEIGHT,
         "Walking Game"
     );
-    TexturumManager_Init(&texturum_manager);
+    Sprites_Init();
     
     
     while (!WindowShouldClose())
@@ -31,31 +29,28 @@ int main()
         EndDrawing();
                 
         v.x = 10.0f, v.y = 20.0f;
-        RenderQueue_AddTexture(
-            &render_queue,
-            texturum_manager.texturums[AREA_CELL_TYPE_BLOCK].texture,
+        Screen_RenderSprite(
+            _sprites[AREA_CELL_TYPE_BLOCK].texture,
             v
         );
         
         v.x = 210.0f, v.y = 20.0f;
-        RenderQueue_AddTexture(
-            &render_queue,
-            texturum_manager.texturums[AREA_CELL_TYPE_FLOOR].texture,
+        Screen_RenderSprite(
+            _sprites[AREA_CELL_TYPE_FLOOR].texture,
             v
         );
         
         v.x = 410.0f, v.y = 20.0f;
-        RenderQueue_AddTexture(
-            &render_queue,
-            texturum_manager.texturums[AREA_CELL_TYPE_PLAYER].texture,
+        Screen_RenderSprite(
+            _sprites[AREA_CELL_TYPE_PLAYER].texture,
             v
         );
         
-        RenderQueue_Render(&render_queue);
+        Screen_Update();
     }
     
     
-    TexturumManager_Release(&texturum_manager);
+    Sprites_Release();
     CloseWindow();    
     
     return 0;
@@ -63,6 +58,6 @@ int main()
 
 
 // Трюк для компиляции всех cpp-файлов пока нет скрипта для общей сборки
-#include "data_textures.c"
+#include "data_sprites.c"
 #include "area.c"
 #include "graphics.c"

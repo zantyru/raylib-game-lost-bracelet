@@ -9,24 +9,18 @@
 
 
 #include "raylib.h"
-#include "area.h"
+#include "constants.h"
 
 
-typedef struct Texturum
+typedef struct Sprite
 {
     Texture2D texture;
-    int origin_x;
-    int origin_y;
-} Texturum;
+    Vector2 origin;
+} Sprite;
 
 
-typedef struct TexturumManager
-{
-    Texturum texturums[_COUNT_AREA_CELL_TYPE];
-} TexturumManager;
-
-void TexturumManager_Init(TexturumManager *data);
-void TexturumManager_Release(TexturumManager *data);
+void Sprites_Init();
+void Sprites_Release();
 
 
 #endif // TEXTURUM_H

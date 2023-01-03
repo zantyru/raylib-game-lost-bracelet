@@ -4,50 +4,23 @@
 
 #include <stddef.h>  // Нужен для NULL
 #include "raylib.h"
+#include "constants.h"
 #include "graphics.h"
 
 
-void RenderQueue_AddTexture(RenderQueue* data, Texture2D texture, Vector2 screen_position)
-{
-    if (data->_root == NULL)
-    {
-        data->_root = (RenderQueueNode*)MemAlloc(sizeof(RenderQueueNode));
-        data->_tail = data->_root;
-    }
-    else
-    {
-        data->_tail->_next = (RenderQueueNode*)MemAlloc(sizeof(RenderQueueNode));
-        data->_tail = data->_tail->_next;
-    }
+static RenderQueueNode _render_queue[RENDER_QUEUE_MAX_LENGTH] = { 0 };
+static unsigned int _render_queue_length = 0;
 
-    data->_tail->texture = texture;
-    data->_tail->screen_position = screen_position;
-    data->_tail->_next = NULL;
+
+void Screen_RenderSprite(Texture2D texture, Vector2 screen_position)
+{
+    
 }
 
 
-void RenderQueue_Render(RenderQueue* data)
+void Screen_Update()
 {
     BeginDrawing();
-    
-    RenderQueueNode* old;
-    
-    while (data->_root != NULL)
-    {
-        DrawTextureV(
-            data->_root->texture,
-            data->_root->screen_position,
-            WHITE
-        );
-        
-        old = data->_root;
-        data->_root = data->_root->_next;
-        
-        old->_next = NULL;
-        MemFree(old);
-    }
-    
-    data->_tail = NULL;
     
     EndDrawing();
 }

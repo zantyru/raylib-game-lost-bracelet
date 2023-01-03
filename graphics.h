@@ -15,29 +15,11 @@ typedef struct RenderQueueNode
 {
     Texture2D texture;
     Vector2 screen_position;
-    struct RenderQueueNode* _next;
 } RenderQueueNode;
 
 
-typedef struct RenderQueue
-{
-    RenderQueueNode* _root;
-    RenderQueueNode* _tail;
-} RenderQueue;
-
-void RenderQueue_AddTexture(RenderQueue* data, Texture2D texture, Vector2 screen_position);
-void RenderQueue_Render(RenderQueue* data);
-
-
-
-// typedef struct RendererCore
-// {
-//     struct
-//     {
-//         Texture2D* array;
-//     } Textures;
-    
-// } RendererCore;
+void Screen_RenderSprite(Texture2D texture, Vector2 screen_position);
+void Screen_Update();
 
 
 #endif // GRAPHICS_H
